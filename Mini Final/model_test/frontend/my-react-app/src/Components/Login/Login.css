@@ -1,0 +1,209 @@
+.wrap {
+    background-image: url("/public/images_used/loginbgimg.jpeg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: fadeIn 1.5s;
+  }
+  .text-section h1 span {
+    color: #ff5733; /* Apply your preferred color */
+    font-weight: bold; /* Optional: Makes it stand out */
+  }
+  
+  .toggle-link {
+    color: #ff5733;
+    font-weight: bold;
+    cursor: pointer; /* Makes it look clickable */
+    transition: color 0.3s ease;
+  }
+  
+  .toggle-link:hover {
+    color: #6a11cb; /* Changes color on hover for better UI */
+    text-decoration: underline;
+  }
+  
+  .container1 {
+    display: flex;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(255, 72, 0, 0.473);
+  
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .text-section {
+    flex: 1;
+    padding: 30px;
+    color: hsl(222, 83%, 2%);
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideInLeft 1s forwards;
+  }
+  
+  .text-section h1 {
+    font-size: 2rem;
+  }
+  
+  .text-section span {
+    color: hsl(218, 81%, 75%);
+  }
+  
+  .text-section p {
+    margin-top: 10px;
+    color: hsl(223, 78%, 2%);
+  }
+  
+  .form-section {
+    flex: 1;
+    position: relative;
+    padding: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 1.2s forwards;
+  }
+  
+  .radius-shape-1,
+  .radius-shape-2 {
+    position: absolute;
+    z-index: -1;
+    animation: floatAnimation 4s infinite alternate;
+  }
+  
+  .radius-shape-1 {
+    width: 150px;
+    height: 150px;
+    top: -40px;
+    left: -40px;
+    background: radial-gradient(#ff5733, #ff8c42);
+    border-radius: 50%;
+  }
+  
+  .radius-shape-2 {
+    width: 180px;
+    height: 180px;
+    bottom: -40px;
+    right: -40px;
+    background: radial-gradient(#ff5733, #ff8c42);
+    border-radius: 38% 62% 63% 37%;
+  }
+  
+  .form-container {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .input-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  input {
+    width: 80%;
+    width: 80%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid#FF5733;
+    border-radius: 5px;
+    background: white;
+    color: black;
+    transition: border-color 0.3s;
+  }
+  input::placeholder {
+    color: gray;
+  }
+  
+  input:focus {
+    outline: none;
+    background: #f1f1f1;
+    border-color: #2575fc;
+  }
+  
+  .checkbox {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .checkbox label {
+    margin-left: 5px;
+  }
+  
+  .die {
+    width: 100%;
+    padding: 12px;
+    background: #ff5733;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .die:hover {
+    background: linear-gradient(90deg, #2575fc, #6a11cb);
+    transform: scale(1.05);
+  }
+  
+  a {
+    color: hsl(218, 81%, 65%);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    color: hsl(218, 81%, 85%);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes floatAnimation {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(15px);
+    }
+  }

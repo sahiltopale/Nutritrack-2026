@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap");
+
+.recipes-page-container {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(to right, #2c2c2c, #1a1a1a);
+  background-size: cover;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+}
+
+.recipes-page-title {
+  font-size: 3.5rem;
+  font-family: "Orbitron", sans-serif;
+  color: #ff7a00;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px #ff7a00;
+  animation: pulseOrange 2s infinite;
+}
+
+@keyframes pulseOrange {
+  0%,
+  100% {
+    text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00;
+  }
+  50% {
+    text-shadow: 0 0 25px #ffc300, 0 0 40px #ff7a00;
+  }
+}
+
+.recipes-search-bar {
+  padding: 14px;
+  width: 500px;
+  max-width: 95%;
+  margin-bottom: 40px;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.927);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.recipes-search-bar::placeholder {
+  color: #555;
+  font-style: italic;
+}
+
+.recipes-search-bar:focus {
+  outline: none;
+  border: 2px solid #2c25eb;
+  box-shadow: 0 0 12px rgba(255, 122, 0, 0.5);
+}
+
+.recipes-search-bar:hover {
+  background: rgba(243, 241, 238, 0.944);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ff7a00;
+  width: 550px;
+  transition: width 0.4s ease;
+}
+
+.recipes-page-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding-top: 10px;
+  padding-bottom: 40px;
+}
+
+.recipe-card {
+  background: #2d2d2d;
+  border-radius: 20px;
+  padding: 1rem;
+  width: 300px;
+  transition: border 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 122, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.recipe-card:hover {
+  border: 2px solid #ff7a00;
+  box-shadow: none;
+  transform: none;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.5s ease;
+}
+
+.recipe-card:hover img {
+  transform: scale(1.1);
+}
+
+.recipe-card h3 {
+  font-size: 1.6rem;
+  color: #ff9900;
+  margin-bottom: 0.3rem;
+}
+
+.recipe-card p {
+  color: #aaa;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.recipe-card button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #00c6ff;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.recipe-card button:hover {
+  background-color: #0072ff;
+}
+
+.orange-glow::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(45deg, #ff7a00, #ffc300, #ff6f00);
+  background-size: 600% 600%;
+  animation: neonBorderOrange 10s ease infinite;
+  z-index: -1;
+  border-radius: 22px;
+  filter: blur(10px);
+  opacity: 0.6;
+}
+
+@keyframes neonBorderOrange {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

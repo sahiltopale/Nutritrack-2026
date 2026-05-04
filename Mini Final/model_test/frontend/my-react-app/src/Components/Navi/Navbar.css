@@ -1,0 +1,165 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  overflow: hidden;
+  border-bottom: 1px solid grey;
+  z-index: 10;
+}
+
+.fspart {
+  display: flex;
+}
+
+.fspart h1 {
+  margin-top: 5px;
+  color: #ff5733;
+}
+
+.fspart img {
+  height: 40px;
+  margin-top: 25px;
+  margin-left: 20px;
+  background-color: #ff5733;
+}
+
+.spart {
+  display: flex;
+  gap: 70px;
+  margin-top: 8px;
+  margin-right: 20px;
+}
+
+.hel {
+  all: unset;
+  padding: 10px 20px;
+  background-color: #ff5733;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.login-link:hover {
+  color: #ff5733;
+  transition: all 0.3s ease;
+}
+
+/* New Navbar Tab Hover Effect */
+.spart a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  padding: 10px 0;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.spart a:hover {
+  color: #ff5733;
+  text-shadow: 0 0 10px #ff5733, 0 0 20px #ff5733;
+  transform: translateY(-5px); /* Moves the link up slightly */
+}
+
+.spart a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #ff5733;
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.spart a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.user-dropdown-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.user-initial {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #5c026c, #b216e6);
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 87, 51, 0.4);
+  transition: transform 0.2s ease-in-out;
+}
+
+.user-initial:hover {
+  transform: scale(1.1) rotate(2deg);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 7px;
+  right: 1px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  padding: 6px 0;
+  z-index: 9999;
+  animation: fadeSlideIn 0.3s ease forwards;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Animation */
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  color: #ff5733;
+  padding: 10px 20px;
+  width: 100%;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu button:hover {
+  background-color: #ffe5dd; /* soft background */
+  color: #ff6600; /* vibrant orange text on hover */
+  padding-left: 25px; /* subtle shift effect */
+}
+
+/* Add this to your existing Navbar CSS to style the loading spinner */
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+}

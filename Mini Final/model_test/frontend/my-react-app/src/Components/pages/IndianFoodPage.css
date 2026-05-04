@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap");
+
+.indian-food-container {
+  padding: 60px 30px;
+  max-width: 1400px; /* Increased width for wider layout */
+  width: 95%;
+  margin: auto;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  background: linear-gradient(to right, #141414, #1e1e1e);
+  min-height: 100vh;
+  text-align: center;
+}
+
+.indian-food-container h1 {
+  font-size: 3rem;
+  font-family: "Orbitron", sans-serif;
+  color: #ff7a00;
+  text-shadow: 0 0 10px #ff7a00;
+  margin-bottom: 30px;
+  animation: pulseOrange 2s infinite;
+}
+
+.indian-food-container p {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #ccc;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(255, 122, 0, 0.2);
+  transition: 0.3s ease;
+}
+
+.indian-food-container p:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 25px rgba(255, 122, 0, 0.4);
+}
+
+.food-list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* grid instead of flex for responsiveness */
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.food-card {
+  background: #2d2d2d;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%; /* Full width inside grid */
+  max-width: 280px; /* Optional to control max card size */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 122, 0, 0.2);
+  margin: auto; /* Center card in its column */
+}
+
+.food-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.food-card h3 {
+  font-size: 1.5rem;
+  color: #ff7a00;
+  margin-bottom: 10px;
+}
+
+.food-card p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.food-card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.food-card ul li {
+  color: #ddd;
+  font-size: 1rem;
+}
+
+.food-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(255, 122, 0, 0.4);
+}
+
+@keyframes pulseOrange {
+  0%,
+  100% {
+    text-shadow: 0 0 10px #ff7a00, 0 0 20px #ff7a00;
+  }
+  50% {
+    text-shadow: 0 0 25px #ffc300, 0 0 40px #ff7a00;
+  }
+}
+
+.coming-soon-text {
+  margin-top: 40px;
+  font-size: 1.3rem;
+  color: #ffb347;
+  font-weight: 600;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

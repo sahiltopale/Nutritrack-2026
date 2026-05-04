@@ -1,0 +1,253 @@
+/* FileUpload.css */
+
+/* Main Wrapper */
+.fileupload-wrapper {
+  position: relative;
+  background-image: url("/public/images_used/searchbg.jpg"); /* fixed path */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  background-color: #000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* align starting */
+  align-items: center;
+  padding: 40px 20px 20px 20px;
+  overflow: hidden;
+}
+
+/* Background Image */
+.fileupload-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: blur(5px);
+  background-attachment: fixed;
+  z-index: -1;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+/* Welcome Heading */
+.fileupload-heading {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 0 15px #feb274, 0 0 30px #ff8400;
+  margin-bottom: 40px;
+  animation: pulseOrange 2s infinite;
+}
+
+/* Upload Card */
+.fileupload-card {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 50px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 0 20px rgba(227, 228, 231, 0.9), 0 0 30px rgb(199, 207, 237);
+  text-align: center;
+  margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease forwards;
+}
+
+.fileupload-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 50px #f86f07;
+}
+
+/* Upload Section */
+.fileupload-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ff6f00;
+  text-shadow: 0 0 8px rgba(7, 6, 6, 0.4);
+  margin-bottom: 25px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.fileupload-card h2:hover {
+  color: #ff9100;
+  transform: scale(1.1);
+}
+
+.fileupload-card form {
+  margin-bottom: 20px;
+}
+
+/* File Input */
+.fileupload-card input[type="file"] {
+  display: block;
+  margin: 0 auto 15px auto;
+  font-size: 1rem;
+  padding: 12px;
+  border: 2px dashed #333;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fileupload-card input[type="file"]::file-selector-button {
+  background: #66a6ff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background 0.3s ease;
+}
+
+.fileupload-card input[type="file"]::file-selector-button:hover {
+  background: #f86f07;
+}
+
+/* Submit Button */
+.fileupload-card button {
+  background: #557cff;
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.fileupload-card button:hover {
+  background: #fd8300;
+  transform: scale(1.05);
+}
+
+/* Message */
+.fileupload-card p {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #090606;
+}
+
+/* Headings */
+.fileupload-card h3,
+.fileupload-card h4 {
+  margin-top: 30px;
+  color: #ff7a06;
+  font-weight: 600;
+}
+
+/* Processed Image */
+.fileupload-card img {
+  margin-top: 20px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(66, 64, 64, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.fileupload-card img:hover {
+  transform: scale(1.03);
+}
+
+/* Detected Foods List */
+.fileupload-card ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.fileupload-card li {
+  background: rgba(255, 255, 255, 0.6);
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: left;
+  transition: background 0.3s ease;
+  color: #333;
+}
+
+.fileupload-card li ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.fileupload-card li ul li {
+  background: transparent;
+  padding: 5px 0;
+  border-radius: 0;
+}
+
+/* Strong Text */
+.fileupload-card strong {
+  color: #070706;
+}
+
+/* Total Calories Styling */
+.calories-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #0c0b0a;
+  padding: 12px 24px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(66, 64, 64, 0.3);
+  text-shadow: 0 0 10px #ff9100;
+  margin-top: 20px;
+  display: inline-block;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.calories-text:hover {
+  background-color: #ff9100;
+  transform: scale(1.05);
+  color: black;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse Animation for Heading */
+@keyframes pulseOrange {
+  0% {
+    text-shadow: 0 0 10px #ff8400, 0 0 20px #feb274;
+  }
+  50% {
+    text-shadow: 0 0 20px #ff6f00, 0 0 30px #feb274;
+  }
+  100% {
+    text-shadow: 0 0 10px #ff8400, 0 0 20px #feb274;
+  }
+}
+
+/* Add this class to center the spinner on the screen */
+.loading-spinner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}

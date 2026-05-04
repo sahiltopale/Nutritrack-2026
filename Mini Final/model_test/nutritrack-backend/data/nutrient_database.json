@@ -1,0 +1,56 @@
+{
+  "besan_cheela": {
+    "calories": "200 kcal",
+    "protein": "10g",
+    "fats": "10g",
+    "carbs": "25g"
+  },
+  "dosa": {
+    "calories": "180 kcal",
+    "protein": "6g",
+    "fats": "7g",
+    "carbs": "30g"
+  },
+  "gulab_jamun": {
+    "calories": "300 kcal",
+    "protein": "5g",
+    "fats": "15g",
+    "carbs": "40g"
+  },
+  "idli": {
+    "calories": "120 kcal",
+    "protein": "4g",
+    "fats": "2g",
+    "carbs": "24g"
+  },
+  "palak_paneer": {
+    "calories": "300 kcal",
+    "protein": "15g",
+    "fats": "20g",
+    "carbs": "18g"
+  },
+  "poha": {
+    "calories": "250 kcal",
+    "protein": "5g",
+    "fats": "8g",
+    "carbs": "40g"
+  },
+  "samosa": {
+    "calories": "150 kcal",
+    "protein": "5g",
+    "fats": "8g",
+    "carbs": "18g"
+  },
+  "white rice": {
+    "calories": "130 kcal",
+    "protein": "2.5g",
+    "fats": "0.3g",
+    "carbs": "28g"
+  },
+  "pizza": {
+    "calories": "270 kcal",
+    "protein": "12g",
+    "fats": "10g",
+    "carbs": "33g"
+  }
+}
