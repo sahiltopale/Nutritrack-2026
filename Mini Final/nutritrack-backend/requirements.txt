@@ -2,6 +2,5 @@ Flask
 flask-cors
 werkzeug
 ultralytics
-torch==2.0.0+cpu
-torchvision==0.15.1+cpu
---extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.0.1
+torchvision==0.15.2
