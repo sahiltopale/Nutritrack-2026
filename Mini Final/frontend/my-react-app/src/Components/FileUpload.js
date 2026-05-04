@@ -3,6 +3,9 @@ import axios from "axios";
 import "./FileUpload.css";
 import { CircleLoader } from "react-spinners";
 
+// ✅ Use environment variable
+const API_URL = process.env.REACT_APP_API_URL;
+
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
@@ -18,6 +21,7 @@ const FileUpload = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!file) {
       setMessage("Please choose a file to upload.");
       return;
@@ -31,11 +35,11 @@ const FileUpload = () => {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:5000/upload",
+        `${API_URL}/upload`, // ✅ FIXED
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
-        }
+        },
       );
 
       const {
@@ -72,29 +76,29 @@ const FileUpload = () => {
           </button>
         </form>
 
-        {/* Loading spinner outside the form */}
+        {/* Loading spinner */}
         {isLoading && (
           <div className="loading-spinner">
             <CircleLoader color="#ff6f00" loading={isLoading} size={50} />
           </div>
         )}
 
-        {/* Show message */}
+        {/* Message */}
         {message && <p>{message}</p>}
 
-        {/* Show uploaded image */}
+        {/* Processed Image */}
         {filename && (
           <div>
             <h3>Processed Image:</h3>
             <img
-              src={`http://127.0.0.1:5000/static/uploads/${filename}`}
+              src={`${API_URL}/static/uploads/${filename}`} // ✅ FIXED
               alt="Processed"
               style={{ maxWidth: "400px", borderRadius: "15px" }}
             />
           </div>
         )}
 
-        {/* Show detected foods and nutrients */}
+        {/* Detected Foods */}
         {foods.length > 0 && (
           <div>
             <h3>Detected Foods:</h3>
@@ -106,6 +110,7 @@ const FileUpload = () => {
                     {foodItem.name.charAt(0).toUpperCase() +
                       foodItem.name.slice(1)}
                   </strong>
+
                   {nutrients[foodItem.name] && (
                     <ul>
                       <li>
