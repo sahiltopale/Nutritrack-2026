@@ -10,19 +10,19 @@ const Footer = () => {
           <h3 className="footer-title">Company</h3>
           <ul>
             <li>
-              <a href="#">About Us</a>
+              <a href="/">About Us</a>
             </li>
             <li>
-              <a href="#">Contact Us</a>
+              <a href="/">Contact Us</a>
             </li>
             <li>
-              <a href="#">Reservation</a>
+              <a href="/">Reservation</a>
             </li>
             <li>
-              <a href="#">Privacy Policy</a>
+              <a href="/">Privacy Policy</a>
             </li>
             <li>
-              <a href="#">Terms & Condition</a>
+              <a href="/">Terms & Condition</a>
             </li>
           </ul>
         </div>
@@ -32,14 +32,15 @@ const Footer = () => {
           <p>📍 Mumbai , Maharashtra, India</p>
           <p>📞 +91 77601 93777</p>
           <p>📧 nutritrack@enquiry</p>
+
           <div className="social-icons">
-            <a href="#">
+            <a href="https://facebook.com">
               <i className="fab fa-facebook"></i>
             </a>
-            <a href="#">
+            <a href="https://twitter.com">
               <i className="fab fa-twitter"></i>
             </a>
-            <a href="#">
+            <a href="https://linkedin.com">
               <i className="fab fa-linkedin"></i>
             </a>
           </div>
@@ -64,7 +65,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>© NutriTrack 2025, All Rights Reserved. Designed By Student</p>
+        <p>© NutriTrack 2025, All Rights Reserved.</p>
       </div>
     </footer>
   );

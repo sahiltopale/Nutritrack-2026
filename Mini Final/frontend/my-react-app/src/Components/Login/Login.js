@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -10,44 +12,36 @@ export default function Auth() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (isLogin) {
-        // Login call
-        const res = await axios.post("http://localhost:5000/api/auth/login", {
+        const response = await axios.post(`${API_URL}/api/auth/login`, {
           email,
           password,
         });
 
         alert("Login successful!");
 
-        // ✅ Save token and email to localStorage
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("userEmail", res.data.email); // <--- ADD THIS LINE
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userEmail", response.data.email);
 
-        // Redirect to home
         navigate("/");
       } else {
-        // Register call
-        const res = await axios.post(
-          "http://localhost:5000/api/auth/register",
-          {
-            email,
-            password,
-            firstName,
-            lastName,
-          }
-        );
+        await axios.post(`${API_URL}/api/auth/register`, {
+          email,
+          password,
+          firstName,
+          lastName,
+        });
 
         alert("Registration successful!");
         setIsLogin(true);
       }
 
-      // Clear form
       setEmail("");
       setPassword("");
       setFirstName("");
@@ -65,17 +59,9 @@ export default function Auth() {
             {isLogin ? "Welcome Back!" : "Create an Account"} <br />
             <span>{isLogin ? "Login to continue" : "Join us today"}</span>
           </h1>
-          <p>
-            {isLogin
-              ? "Access your account and continue."
-              : "Register to explore our platform with exclusive features and tools."}
-          </p>
         </div>
 
         <div className="form-section">
-          <div className="radius-shape-1"></div>
-          <div className="radius-shape-2"></div>
-
           <form className="form-container" onSubmit={handleSubmit}>
             <h2>{isLogin ? "Login" : "Register At NutriTrack"}</h2>
 
