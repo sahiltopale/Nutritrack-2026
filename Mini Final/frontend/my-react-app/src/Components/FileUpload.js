@@ -3,7 +3,7 @@ import axios from "axios";
 import "./FileUpload.css";
 import { CircleLoader } from "react-spinners";
 
-// ✅ Render Backend URL
+// ✅ Correct Render Backend URL
 const API_URL =
   process.env.REACT_APP_API_URL || "https://nutritrack-2026-1.onrender.com";
 
@@ -16,16 +16,18 @@ const FileUpload = () => {
   const [filename, setFilename] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // -----------------------------
+  // --------------------------------
   // Handle File Change
-  // -----------------------------
+  // --------------------------------
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    if (e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+    }
   };
 
-  // -----------------------------
+  // --------------------------------
   // Handle Upload
-  // -----------------------------
+  // --------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,7 +49,7 @@ const FileUpload = () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-        timeout: 120000, // 2 mins for model prediction
+        timeout: 120000, // 2 minutes
       });
 
       console.log("Upload Success:", response.data);
@@ -71,7 +73,9 @@ const FileUpload = () => {
     } catch (error) {
       console.error("FULL ERROR:", error);
 
-      // ✅ Backend responded with error
+      // --------------------------------
+      // Backend returned error
+      // --------------------------------
       if (error.response) {
         console.log("Backend Response:", error.response.data);
 
@@ -81,7 +85,9 @@ const FileUpload = () => {
         );
       }
 
-      // ✅ Request sent but no response
+      // --------------------------------
+      // No response from backend
+      // --------------------------------
       else if (error.request) {
         console.log("No response received:", error.request);
 
@@ -90,7 +96,9 @@ const FileUpload = () => {
         );
       }
 
-      // ✅ Axios/config error
+      // --------------------------------
+      // Axios / frontend error
+      // --------------------------------
       else {
         console.log("Axios Error:", error.message);
 
