@@ -3,8 +3,9 @@ import axios from "axios";
 import "./FileUpload.css";
 import { CircleLoader } from "react-spinners";
 
-// ✅ Use environment variable
-const API_URL = process.env.REACT_APP_API_URL;
+// ✅ Render Backend URL
+const API_URL =
+  process.env.REACT_APP_API_URL || "https://nutritrack-2026-1.onrender.com";
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
@@ -15,10 +16,16 @@ const FileUpload = () => {
   const [filename, setFilename] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  // -----------------------------
+  // Handle File Change
+  // -----------------------------
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
 
+  // -----------------------------
+  // Handle Upload
+  // -----------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,13 +41,16 @@ const FileUpload = () => {
     setMessage("");
 
     try {
-      const response = await axios.post(
-        `${API_URL}/upload`, // ✅ FIXED
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
+      console.log("Uploading to:", `${API_URL}/upload`);
+
+      const response = await axios.post(`${API_URL}/upload`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
         },
-      );
+        timeout: 120000, // 2 mins for model prediction
+      });
+
+      console.log("Upload Success:", response.data);
 
       const {
         filename: uploadedFilename,
@@ -49,14 +59,43 @@ const FileUpload = () => {
         total_calories,
       } = response.data;
 
-      setMessage(`File uploaded successfully: ${uploadedFilename}`);
-      setFilename(uploadedFilename);
-      setFoods(detectedFoods);
-      setNutrients(foodNutrients);
-      setTotalCalories(total_calories);
+      setMessage("File uploaded successfully ✅");
+
+      setFilename(uploadedFilename || "");
+
+      setFoods(detectedFoods || []);
+
+      setNutrients(foodNutrients || {});
+
+      setTotalCalories(total_calories || 0);
     } catch (error) {
-      setMessage("Error uploading file. Please try again.");
-      console.error(error);
+      console.error("FULL ERROR:", error);
+
+      // ✅ Backend responded with error
+      if (error.response) {
+        console.log("Backend Response:", error.response.data);
+
+        setMessage(
+          error.response.data.error ||
+            "Server error occurred while processing image.",
+        );
+      }
+
+      // ✅ Request sent but no response
+      else if (error.request) {
+        console.log("No response received:", error.request);
+
+        setMessage(
+          "Backend server is not responding. Render server may be sleeping.",
+        );
+      }
+
+      // ✅ Axios/config error
+      else {
+        console.log("Axios Error:", error.message);
+
+        setMessage(error.message);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -70,41 +109,64 @@ const FileUpload = () => {
         <h2>Upload Your Food Image</h2>
 
         <form onSubmit={handleSubmit}>
-          <input type="file" onChange={handleFileChange} required />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            required
+          />
+
           <button type="submit" disabled={isLoading}>
             {isLoading ? "Uploading..." : "Upload"}
           </button>
         </form>
 
-        {/* Loading spinner */}
+        {/* ---------------- Loading Spinner ---------------- */}
         {isLoading && (
           <div className="loading-spinner">
-            <CircleLoader color="#ff6f00" loading={isLoading} size={50} />
+            <CircleLoader color="#ff6f00" size={50} />
           </div>
         )}
 
-        {/* Message */}
-        {message && <p>{message}</p>}
+        {/* ---------------- Status Message ---------------- */}
+        {message && (
+          <p
+            style={{
+              marginTop: "15px",
+              fontWeight: "bold",
+              color: message.includes("successfully") ? "green" : "red",
+            }}
+          >
+            {message}
+          </p>
+        )}
 
-        {/* Processed Image */}
+        {/* ---------------- Processed Image ---------------- */}
         {filename && (
-          <div>
+          <div style={{ marginTop: "20px" }}>
             <h3>Processed Image:</h3>
+
             <img
-              src={`${API_URL}/static/uploads/${filename}`} // ✅ FIXED
-              alt="Processed"
-              style={{ maxWidth: "400px", borderRadius: "15px" }}
+              src={`${API_URL}/static/uploads/${filename}`}
+              alt="Processed Food"
+              style={{
+                maxWidth: "400px",
+                width: "100%",
+                borderRadius: "15px",
+                marginTop: "10px",
+              }}
             />
           </div>
         )}
 
-        {/* Detected Foods */}
+        {/* ---------------- Detected Foods ---------------- */}
         {foods.length > 0 && (
-          <div>
+          <div style={{ marginTop: "20px" }}>
             <h3>Detected Foods:</h3>
+
             <ul>
               {foods.map((foodItem, index) => (
-                <li key={index}>
+                <li key={index} style={{ marginBottom: "15px" }}>
                   <strong>
                     {foodItem.count} x{" "}
                     {foodItem.name.charAt(0).toUpperCase() +
@@ -114,16 +176,19 @@ const FileUpload = () => {
                   {nutrients[foodItem.name] && (
                     <ul>
                       <li>
-                        <strong>Calories (per item):</strong>{" "}
+                        <strong>Calories:</strong>{" "}
                         {nutrients[foodItem.name]?.calories}
                       </li>
+
                       <li>
                         <strong>Protein:</strong>{" "}
                         {nutrients[foodItem.name]?.protein}
                       </li>
+
                       <li>
                         <strong>Fats:</strong> {nutrients[foodItem.name]?.fats}
                       </li>
+
                       <li>
                         <strong>Carbs:</strong>{" "}
                         {nutrients[foodItem.name]?.carbs}

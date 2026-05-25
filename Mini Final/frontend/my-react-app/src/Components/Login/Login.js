@@ -3,12 +3,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-const API_URL = process.env.REACT_APP_API_URL;
+// ✅ Render Backend URL
+const API_URL =
+  process.env.REACT_APP_API_URL || "https://nutritrack-2026.onrender.com";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -19,6 +23,7 @@ export default function Auth() {
 
     try {
       if (isLogin) {
+        // LOGIN
         const response = await axios.post(`${API_URL}/api/auth/login`, {
           email,
           password,
@@ -31,6 +36,7 @@ export default function Auth() {
 
         navigate("/");
       } else {
+        // REGISTER
         await axios.post(`${API_URL}/api/auth/register`, {
           email,
           password,
@@ -42,12 +48,15 @@ export default function Auth() {
         setIsLogin(true);
       }
 
+      // Clear form
       setEmail("");
       setPassword("");
       setFirstName("");
       setLastName("");
     } catch (err) {
-      alert(err.response?.data?.msg || "Something went wrong");
+      console.error(err);
+
+      alert(err.response?.data?.msg || "Server Error. Please try again.");
     }
   };
 
@@ -56,7 +65,10 @@ export default function Auth() {
       <div className="container1">
         <div className="text-section">
           <h1>
-            {isLogin ? "Welcome Back!" : "Create an Account"} <br />
+            {isLogin ? "Welcome Back!" : "Create an Account"}
+
+            <br />
+
             <span>{isLogin ? "Login to continue" : "Join us today"}</span>
           </h1>
         </div>
@@ -74,6 +86,7 @@ export default function Auth() {
                   onChange={(e) => setFirstName(e.target.value)}
                   required
                 />
+
                 <input
                   type="text"
                   placeholder="Last Name"
@@ -106,6 +119,7 @@ export default function Auth() {
 
             <p>
               {isLogin ? "Don't have an account?" : "Already have an account?"}
+
               <span
                 className="toggle-link"
                 onClick={() => setIsLogin(!isLogin)}
